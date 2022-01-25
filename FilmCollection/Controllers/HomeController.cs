@@ -30,6 +30,13 @@ namespace FilmCollection.Controllers
             return View();
         }
 
+        public IActionResult MyPodcasts()
+        {
+            return View();
+        }
+
+
+
         [HttpGet]
         public IActionResult AddMovie()
         {
