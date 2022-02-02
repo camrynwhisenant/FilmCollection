@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmCollection.Models
 {
@@ -9,8 +10,8 @@ namespace FilmCollection.Models
         [Key]
         public int MovieID { get; set; }
 
-        [Required(ErrorMessage = "Category must be specified")]
-        public string Category { get; set; }
+        //[Required(ErrorMessage = "Category must be specified")]
+        //public string Category { get; set; }
 
         [Required(ErrorMessage = "Title must be specified")]
         public string Title { get; set; }
@@ -29,6 +30,13 @@ namespace FilmCollection.Models
 
         [MaxLength(25)]
         public string Notes { get; set; }
+
+        //foreign key relationship
+        [Required(ErrorMessage = "Category must be specified")]
+        public int Categoryid { get; set; }
+        public Categories Categories { get; set; }
+        //public int MajorID { get; set; }
+        //public Major Major { get; set; } EXAMPLE
 
 
     }
