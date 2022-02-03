@@ -45,14 +45,14 @@ namespace FilmCollection.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMovie(FilmCollectionResponse fcr)
+        public IActionResult AddMovie(FilmCollectionResponse fcr)   //add a movie to the collection
         {
             if (ModelState.IsValid)
             {
                 filmContext.Add(fcr);
                 filmContext.SaveChanges();
                 //return View("Confirmation", ar);
-                return View("ViewCollection");
+                return RedirectToAction("ViewCollection");
             }
             else
             {
@@ -62,9 +62,9 @@ namespace FilmCollection.Controllers
 
         }
 
-
+        
         [HttpGet]
-        public IActionResult ViewCollection()
+        public IActionResult ViewCollection()   //view the collection of movies in a table
         {
             var movies = filmContext.Movies
                 .Include(x => x.Categories)
@@ -74,7 +74,7 @@ namespace FilmCollection.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int movieid)
+        public IActionResult Edit(int movieid)   //edit a movie in the collection
         {
             ViewBag.categories = filmContext.categories.ToList();
             var movie = filmContext.Movies.Single(x => x.MovieID == movieid);
@@ -90,8 +90,8 @@ namespace FilmCollection.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int movieid)
-        {
+        public IActionResult Delete(int movieid)            //delete a movie from the collection
+        { 
             var movie = filmContext.Movies.Single(x => x.MovieID == movieid);
             return View(movie);
         }
